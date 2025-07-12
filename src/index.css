@@ -240,7 +240,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .shadow {
-  height: 100dvh;
+  /* height: 100dvh; */
   border: 1px solid var(--secondary-background);
   box-shadow: 0 0 5px 2px var(--secondary-background);
 }
