@@ -89,11 +89,11 @@ export default function Detail() {
     const languagesEntries = languagesObject ? Object.values(languagesObject) : null;
 
     return (
-        <main className='details-main'>
-            <div className='shadow'>
-                <div className="details-header">
-                    <Header />
-                </div>
+        <>
+            <header className="page-header nunito-font-300">
+                <Header />
+            </header>
+            <main className='details-main'>
                 {
                     // country !== undefined && Object.keys(country).length !== 0 ?
                     !fetchFailed ?
@@ -159,7 +159,7 @@ export default function Detail() {
                             </section> :
                         <FetchFailed />
                 }
-            </div>
-        </main>
+            </main>
+        </>
     )
 }
