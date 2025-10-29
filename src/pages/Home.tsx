@@ -6,6 +6,7 @@ import Filter from '../components/Filter.tsx'
 import { getCountries } from '../service/api.ts'
 import { HomePageProps } from "../types/countries.ts";
 import Loading from "../components/Loading.tsx";
+import { BiSearchAlt } from "react-icons/bi";
 // import { Link } from "react-router";
 
 /*  Component includes:
@@ -17,7 +18,7 @@ function Home() {
     // const countries = homePage;
     const [countries, setCountries] = useState<HomePageProps[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
-    const [selectedRegion, setSelectedRegion] = useState<string>("All")
+    const [selectedRegion, setSelectedRegion] = useState<string>("Europe")
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     // getRes()
@@ -84,41 +85,64 @@ function Home() {
 
 
     return (
-        <div className="home-page shadow">
-            <div className="home-header nunito-font-300" >
+        <>
+            <header className="page-header nunito-font-300">
                 <Header />
-            </div>
-            <div className="filter-tools-home">
-                <Search onChangeProb={Result.handleOnChange} />
-                <Filter onSelect={Result.handleSelectedRegion} />
-            </div>
-            <div>
-                {isLoading ?
-                    <div className="">
-                        <Loading />
-                    </div> :
-                    (Result.currentCountries.length !== 0 ?
-                        <div className="card-home">
-                            {
-                                Result.currentCountries && Result.currentCountries.map((country, i) => {
-                                    return (
-                                        <div key={i}>
-                                            <Card name={country.name} population={country.population}
-                                                region={country.region} capital={country.capital}
-                                                flags={country.flags} isLoading={isLoading} />
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                        :
-                        <div className="search-failed">
-                            <p className="search-failed-text">No country matched your search!</p>
-                        </div>)
-                }
-            </div>
-
-        </div>
+            </header>
+            <main className="home-page">
+                <div className="filter-tools-home">
+                    <Search onChangeProb={Result.handleOnChange} searchTerm={searchTerm} />
+                    <Filter onSelect={Result.handleSelectedRegion} selectedRegion={selectedRegion} />
+                </div>
+                <div>
+                    {isLoading ?
+                        <div className="loading-container">
+                            <Loading />
+                        </div> :
+                        (Result.currentCountries.length !== 0 ?
+                            <div className="card-home">
+                                {
+                                    Result.currentCountries && Result.currentCountries.map((country, i) => {
+                                        return (
+                                            <div key={i}>
+                                                <Card name={country.name} population={country.population}
+                                                    region={country.region} capital={country.capital}
+                                                    flags={country.flags} isLoading={isLoading} />
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            :
+                            <div className="search-failed">
+                                <div className="search-failed-content">
+                                    <BiSearchAlt className="search-failed-icon" />
+                                    <h2 className="search-failed-title">No countries found</h2>
+                                    <p className="search-failed-text">
+                                        {searchTerm && selectedRegion !== 'All'
+                                            ? `No countries match "${searchTerm}" in ${selectedRegion}.`
+                                            : searchTerm
+                                                ? `No countries match "${searchTerm}".`
+                                                : `No countries found in ${selectedRegion}.`}
+                                    </p>
+                                    <p className="search-failed-suggestion">
+                                        Try searching with a different term or region.
+                                    </p>
+                                    <button
+                                        className="search-failed-button"
+                                        onClick={() => {
+                                            setSearchTerm("");
+                                            setSelectedRegion("All");
+                                        }}
+                                    >
+                                        Clear all filters
+                                    </button>
+                                </div>
+                            </div>)
+                    }
+                </div>
+            </main>
+        </>
     )
 }
 
