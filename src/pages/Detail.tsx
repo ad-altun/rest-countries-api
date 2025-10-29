@@ -134,7 +134,7 @@ export default function Detail() {
                                                 <p className="details-item">Currencies:
                                                     <span>{` ${currencyEntries || 'N/A'}`}</span></p>
                                                 <p className="details-item">Languages:
-                                                    <span>{`${languagesEntries || 'N/A'}`}</span></p>
+                                                    <span>{` ${languagesEntries || 'N/A'}`}</span></p>
                                             </div>
                                         </div>
                                         <div className="detail-border">
