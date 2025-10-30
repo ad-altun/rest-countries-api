@@ -32,9 +32,9 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/rest-countries-api:latest
-              ${{ secrets.DOCKERHUB_USERNAME }}/rest-countries-api:${{ steps.vars.outputs.sha_short }}
-            cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/rest-countries-api:latest
-            cache-to: type=inline
+            ${{ secrets.DOCKERHUB_USERNAME }}/rest-countries-api:${{ steps.vars.outputs.sha_short }}
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/rest-countries-api:latest
+          cache-to: type=inline
 
       - name: Trigger Coolify deployment
         run: |
