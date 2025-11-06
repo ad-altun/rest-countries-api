@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaMoon } from "react-icons/fa";
+import { MdLightMode } from "react-icons/md";
 
 export type ThemeModes = "light" | "dark" | null;
 
@@ -54,9 +55,15 @@ export default function ThemeToggle() {
 
     return (
         <div>
-            <div className="darkMode" onClick={handleClick} >
-                <FaMoon className=""></FaMoon>
-                <button className="nunito-font-600 dark-btn">Dark Mode</button>
+            <div className="darkMode"  >
+                <button onClick={handleClick}
+                    className="dark-btn">
+                    {
+                        mode === "dark" ?
+                            <FaMoon size={'1rem'} /> :
+                            <MdLightMode size={'1rem'} />
+                    }
+                </button>
             </div>
         </div>
     )
