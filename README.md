@@ -8,7 +8,7 @@ This project provides an intuitive interface to browse and search through inform
 
 ### Links
 
-- **Live Site:** [https://github.com/ad-altun/rest-countries-api](https://github.com/ad-altun/rest-countries-api)
+- **Live Site:** [https://rest-countries.denizaltun.de](https://rest-countries.denizaltun.de/)
 - **Frontend Mentor Challenge:** [REST Countries API Challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 
 ## Screenshots
